@@ -3,6 +3,7 @@
 """
 CSV to Parquet Converter
 Converts CSV files to Parquet format using DuckDB
+https://duckdb.org/
 """
 
 import sys
