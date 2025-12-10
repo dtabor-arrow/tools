@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Converts a CSV file to Parquet format.
+# https://www.databricks.com/glossary/what-is-parquet
+
 set -e
 
 if [[ -z "$1" ]]; then
