@@ -85,7 +85,7 @@ All errors include clear messages about next steps.
 
 For help using any script, run with `-h` or `--help` flag:
 ```bash
-./execute-and-download-flexreport-beta.sh --help
+./execute-and-download-flexreport.sh --help
 ./execute-and-download-flexreport.py --help
 ```
 
