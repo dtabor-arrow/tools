@@ -49,8 +49,9 @@ Use this version if you prefer Python or need more extensibility.
 3. Open the report you want to execute
 4. Copy the report ID from the URL
 
-Example URL: `https://apps.cloudhealthtech.com/flex_reports/12345`
-Report ID: `12345`
+Example FlexReport URL: `https://apps.cloudhealthtech.com/ui/reports/flexreports/view/crn:63253:flexreports/6d24474b-d599-4a12-8a6d-5cca086898qq?...`
+
+Example FlexReport ID: `crn:63253:flexreports/6d24474b-d599-4a12-8a6d-5cca086898qq`
 
 ## Output Files
 
