@@ -1,0 +1,13 @@
+[
+    {
+     "name": "[CHPS] TEST Azure Workload Consistency",
+     "description": "This report shows Azure workloads and their month-over-month duration.\n\nCreated by CloudHealth Professional Services.",
+     "backlinking": "True",
+     "dataGranularity": "MONTHLY",
+     "timeRange": "12",
+     "limit": "-1",
+     "excludeCurrent": "False",
+     "sqlStatement": "WITH cxtemp_months AS ( SELECT timeInterval_Month AS Month, DATE_DIFF ( 'hour', FROM_ISO8601_TIMESTAMP (timeInterval_Month), FROM_ISO8601_TIMESTAMP ( LAG (timeInterval_Month, 1) OVER ( ORDER BY timeInterval_Month DESC ) ) ) AS Total_Hours_In_Month FROM AZURE_COST_USAGE GROUP BY timeInterval_Month ), cxtemp_vm_by_month AS ( SELECT timeInterval_Month AS TimeInterval_Month, SUM(Quantity) AS SUM_Quantity, SUM(CostInBillingCurrency) AS SUM_CostInBillingCurrency, SUM(ActualCostInBillingCurrency) AS SUM_ActualCostInBillingCurrency, SUM(AmortizedCostInBillingCurrency) AS SUM_AmortizedCostInBillingCurrency, ResourceId AS ResourceId, MAX(cxtemp_months.Total_Hours_In_Month) AS Total_Hours_In_Month, LAG (timeInterval_month, 1) OVER ( PARTITION BY ResourceId ORDER BY timeInterval_Month ASC ) AS Exists_In_Previous_Month, LAG (timeInterval_month, 1) OVER ( PARTITION BY ResourceId ORDER BY timeInterval_Month DESC ) AS Exists_In_Next_Month FROM AZURE_COST_USAGE LEFT JOIN cxtemp_months ON timeInterval_Month = cxtemp_months.Month WHERE (MeterCategory IN ('Virtual Machines')) AND (ConsumedService IN ('Microsoft.Compute')) AND (MetricType IN ('Amortized')) GROUP BY ResourceId, timeInterval_Month ORDER BY TimeInterval_Month ASC ) SELECT 1 AS NumberVMs, TimeInterval_Month, SUM_Quantity, SUM_CostInBillingCurrency, SUM_ActualCostInBillingCurrency, SUM_AmortizedCostInBillingCurrency, ResourceId, CASE WHEN Exists_In_Previous_Month IS NULL AND Exists_In_Next_Month IS NULL THEN 'Ephemeral Workload' WHEN Exists_In_Previous_Month IS NOT NULL AND Exists_In_Next_Month IS NULL THEN 'Deleted' WHEN Exists_In_Previous_Month IS NULL AND Exists_In_Next_Month IS NOT NULL THEN 'New Workload' WHEN Exists_In_Previous_Month IS NOT NULL AND Exists_In_Next_Month IS NOT NULL AND SUM_Quantity >= 0.9 * Total_Hours_In_Month THEN '24/7 Workload' WHEN Exists_In_Previous_Month IS NOT NULL AND Exists_In_Next_Month IS NOT NULL AND SUM_Quantity < 0.9 * Total_Hours_In_Month THEN 'Existing Workload' ELSE 'Unknown' END AS STATUS FROM cxtemp_vm_by_month WHERE TimeInterval_Month > ( SELECT MIN(TimeInterval_Month) FROM cxtemp_vm_by_month ) AND TimeInterval_Month < ( SELECT MAX(TimeInterval_Month) FROM cxtemp_vm_by_month ) ORDER BY ResourceId ASC"
+    }
+
+]
