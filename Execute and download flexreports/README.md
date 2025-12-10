@@ -72,11 +72,6 @@ All errors include clear messages about next steps.
 
 ## Troubleshooting
 
-**Problem:** "Missing required dependencies"
-**Solution:** Install the required tools:
-- Bash: `brew install jq` (curl is usually pre-installed)
-- Python: `pip install requests`
-
 **Problem:** Report times out after 5 checks
 **Solution:** The report is taking longer than expected. Check status in the CloudHealth platform and download manually if needed.
 
