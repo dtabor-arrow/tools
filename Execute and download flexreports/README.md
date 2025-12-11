@@ -5,7 +5,7 @@ These scripts execute a CloudHealth FlexReport and download the resulting CSV fi
 ## Available Versions
 
 ### Bash Script 
-**File:** `execute-and-download-flexreport-beta.sh`
+**File:** `execute-and-download-flexreport.sh`
 
 Use this version if you prefer bash or need to run in environments without Python.
 
@@ -16,7 +16,7 @@ Use this version if you prefer bash or need to run in environments without Pytho
 
 **Usage:**
 ```bash
-./execute-and-download-flexreport-beta.sh
+./execute-and-download-flexreport.sh
 ```
 
 ### Python Script
