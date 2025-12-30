@@ -1,4 +1,0 @@
-# Example report list 
-Azure Commitment Discount Consumption Daily,crn:1234:flexreports/88652125-cf1e-431e-b5df-fa62fab218qq
-Azure Commitment Discount Consumption Monthly,crn:1234:flexreports/8cc34159-f66b-4d55-8658-54800e75c0qq
-Azure Daily Cost Coverage from RISP,crn:1234:flexreports/433c2918-5c1f-44ef-8854-79f45bb3ffqq
