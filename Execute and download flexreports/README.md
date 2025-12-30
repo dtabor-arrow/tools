@@ -14,11 +14,6 @@ Use this version if you prefer bash or need to run in environments without Pytho
 - curl
 - jq
 
-**Usage:**
-```bash
-./execute-and-download-flexreport.sh
-```
-
 ### Python Script
 **File:** `execute-and-download-flexreport.py`
 
@@ -27,11 +22,6 @@ Use this version if you prefer Python or need more extensibility.
 **Requirements:**
 - Python 3.6+
 - requests module: `pip install requests`
-
-**Usage:**
-```bash
-./execute-and-download-flexreport.py
-```
 
 ## How It Works
 
@@ -59,33 +49,6 @@ Files are saved to the current directory with the report name as the filename (s
 
 Example: "Monthly Cost Report" becomes `Monthly_Cost_Report.csv`
 
-## Error Handling
-
-The scripts will exit with an error message if:
-- Authentication fails
-- Report ID is invalid
-- Report execution fails
-- Report is queued for too long
-- Download fails
-
-All errors include clear messages about next steps.
-
-## Troubleshooting
-
-**Problem:** Report times out after 5 checks
-**Solution:** The report is taking longer than expected. Check status in the CloudHealth platform and download manually if needed.
-
-**Problem:** Report status is QUEUED
-**Solution:** The platform may be experiencing high load. Try again later or check with CloudHealth support.
-
-**Problem:** Report status is FAILED
-**Solution:** Check the report configuration in the CloudHealth platform. The report may have invalid parameters or data issues.
-
 ## Help
 
 For help using any script, run with `-h` or `--help` flag:
-```bash
-./execute-and-download-flexreport.sh --help
-./execute-and-download-flexreport.py --help
-```
-
